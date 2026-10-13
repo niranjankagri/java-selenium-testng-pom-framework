@@ -1,6 +1,3 @@
-
-import listeners.TestListener;
-import org.testng.annotations.Listeners;
 import org.testng.asserts.SoftAssert;
 import pages.AdminPage;
 import pages.BaseClass;
@@ -9,7 +6,6 @@ import pages.HomePage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-@Listeners(TestListener.class)
 public class TestClass extends BaseClass {
 
     @Test(groups= {"SmokeTest"},priority = 1)
