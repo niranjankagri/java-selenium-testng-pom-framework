@@ -16,7 +16,7 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
+import java.time.Duration;
 
 
 public class BaseClass {
@@ -40,7 +40,7 @@ public class BaseClass {
         driver = new ChromeDriver();
         driver.get(properties.getProperty("loginPageURL"));
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         Assert.assertEquals(driver.getCurrentUrl() , properties.getProperty("loginPageURL"), "Invalid URL");
 
     }
