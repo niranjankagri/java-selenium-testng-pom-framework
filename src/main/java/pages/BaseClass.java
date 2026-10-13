@@ -32,14 +32,17 @@ public class BaseClass {
 
     public static PropertyLoader propertyLoader;
 
-    @BeforeClass(alwaysRun = true)
-    public void Setup(){
+    @BeforeSuite(alwaysRun = true)
+    public void beforeSuite() {
         // Set up Extent report with ExtentSparkReport
         extentReports = new ExtentReports();
-
-        propertyLoader = new PropertyLoader();
         ExtentSparkReporter sparkReporter = new ExtentSparkReporter("test-output/report.html");
         extentReports.attachReporter(sparkReporter);
+    }
+
+    @BeforeClass(alwaysRun = true)
+    public void Setup(){
+        propertyLoader = new PropertyLoader();
 
         boolean headless = Boolean.parseBoolean(properties.getProperty("headless", "false"));
         driver = createDriver(properties.getProperty("browser", "chrome"), headless);
@@ -85,9 +88,14 @@ public class BaseClass {
 
     @AfterClass(alwaysRun = true)
     public void teardown(){
-     driver.quit();
+        if (driver != null) {
+            driver.quit();
+        }
+    }
 
-     //Writing everything to report
+    @AfterSuite(alwaysRun = true)
+    public void afterSuite() {
+        //Writing everything to report
         extentReports.flush();
     }
 

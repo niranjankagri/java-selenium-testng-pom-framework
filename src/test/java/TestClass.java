@@ -14,10 +14,10 @@ public class TestClass extends BaseClass {
         SoftAssert softAssert = new SoftAssert();
         LoginPage loginPage = new LoginPage(getDriver());
         Assert.assertTrue(loginPage.isUsernameFieldDisplayed(), "Username field is not displayed");
-        Assert.assertTrue(loginPage.isUsernameFieldEnabled(), "Username field is not disabled");
+        Assert.assertTrue(loginPage.isUsernameFieldEnabled(), "Username field is disabled");
         loginPage.enterUsername(properties.getProperty("userName"));
         Assert.assertTrue(loginPage.isPasswordFieldDisplayed(), "Password field is not displayed");
-        Assert.assertTrue(loginPage.isPasswordFieldEnabled(), "Password field is not disabled");
+        Assert.assertTrue(loginPage.isPasswordFieldEnabled(), "Password field is disabled");
         loginPage.enterPassword(properties.getProperty("password"));
         Assert.assertTrue(loginPage.isLoginButtonDisplayed(), "Login button is not displayed");
         Assert.assertTrue(loginPage.isLoginButtonEnabled(), "Login button is disabled");
@@ -57,7 +57,7 @@ public class TestClass extends BaseClass {
         SoftAssert softAssert = new SoftAssert();
         HomePage homePage = new HomePage(getDriver());
         softAssert.assertTrue(homePage.isAdminOptionEnabled(), "Admin option is disabled");
-        softAssert.assertTrue(homePage.isAdminOptionDisplayed(), "Admin option is disabled");
+        softAssert.assertTrue(homePage.isAdminOptionDisplayed(), "Admin option is not displayed");
         homePage.admin();
         softAssert.assertEquals(homePage.waitForUrl(properties.getProperty("adminPageURL")), properties.getProperty("adminPageURL"), "Invalid Admin Page URL");
         softAssert.assertAll();
@@ -72,7 +72,7 @@ public class TestClass extends BaseClass {
         Assert.assertTrue(adminPage.isUserDropDownDisplayed(), "User dropdown is not displayed");
         adminPage.dropDown();
         adminPage.logout();
-        softAssert.assertEquals(adminPage.waitForUrl(properties.getProperty("loginPageURL")), properties.getProperty("loginPageURL"), "Invalid Home Page URL");
+        softAssert.assertEquals(adminPage.waitForUrl(properties.getProperty("loginPageURL")), properties.getProperty("loginPageURL"), "Not back on the login page after logout");
         softAssert.assertAll();
     }
 
