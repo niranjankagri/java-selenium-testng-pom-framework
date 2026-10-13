@@ -1,0 +1,11 @@
+# Maven and TestNG output
+target/
+test-output/
+
+# Screenshots written by test runs
+Screenshots/
+
+# IDE files
+.idea/
+*.iml
+.vscode/
