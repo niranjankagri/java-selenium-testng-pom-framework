@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<!--
+  Same tests, selected by TestNG group: SmokeTest (login, admin) and Regression (search, logout).
+  Remove one <include> to run only that group.
+  Run: mvn test -DsuiteXmlFile=groupsTestng.xml
+-->
 <suite name="Orange HRM Suite">
+    <!-- Saves a screenshot of every failure into the Extent report -->
     <listeners>
         <listener class-name="listeners.TestListener"></listener>
     </listeners>

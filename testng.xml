@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<!--
+  Full suite: all 4 tests in priority order (login, admin, search, logout).
+  Run: mvn test   (this is the default suite; browser and headless mode come from
+  src/main/resources/config.properties, e.g. mvn test -Dbrowser=firefox -Dheadless=true)
+-->
 <suite name="Orange HRM Suite">
+    <!-- Saves a screenshot of every failure into the Extent report -->
     <listeners>
         <listener class-name="listeners.TestListener"></listener>
     </listeners>

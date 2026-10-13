@@ -6,9 +6,17 @@ import pages.HomePage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+/**
+ * OrangeHRM tests. They share one browser session (BaseClass) and run in priority order:
+ * 1 login, 2 open Admin, 3 search a user, 4 log out. Groups: SmokeTest (1, 2) and
+ * Regression (3, 4), used by groupsTestng.xml.
+ * Hard asserts stop a test at the first broken element; soft asserts collect the
+ * URL checks and report them together at assertAll().
+ */
 public class TestClass extends BaseClass {
 
     @Test(groups= {"SmokeTest"},priority = 1)
+    /** Logs in with the demo account from config.properties and lands on the dashboard. */
     public void testSuccessfulLogin() {
         extentTest.info("Verify that user is able to login with valid credentials");
         SoftAssert softAssert = new SoftAssert();
@@ -28,6 +36,7 @@ public class TestClass extends BaseClass {
     }
 
     @Test(groups= {"Regression"}, priority = 3)
+    /** Searches System Users for "Admin" with status Enabled, then resets the filters. */
     public void testSearchUsername() {
         extentTest.info("Verify that Admin is able to Search User");
         SoftAssert softAssert = new SoftAssert();
@@ -52,6 +61,7 @@ public class TestClass extends BaseClass {
     }
 
     @Test(groups= {"SmokeTest"}, priority = 2)
+    /** Opens Admin from the dashboard side menu. */
     public void testAdmin() {
         extentTest.info("Verify that user is able to navigate to Admin");
         SoftAssert softAssert = new SoftAssert();
@@ -64,6 +74,7 @@ public class TestClass extends BaseClass {
     }
 
     @Test (groups= {"Regression"},priority = 4)
+    /** Logs out through the user menu and is back on the login page. */
     public void testSuccessfulLogout() {
         extentTest.info("Verify that user is able to logout");
         SoftAssert softAssert = new SoftAssert();
@@ -75,7 +86,5 @@ public class TestClass extends BaseClass {
         softAssert.assertEquals(adminPage.waitForUrl(properties.getProperty("loginPageURL")), properties.getProperty("loginPageURL"), "Not back on the login page after logout");
         softAssert.assertAll();
     }
-
-
 
 }

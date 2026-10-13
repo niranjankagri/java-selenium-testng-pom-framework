@@ -9,8 +9,18 @@ import com.aventstack.extentreports.MediaEntityBuilder;
 
 import pages.BaseClass;
 
+/**
+ * TestNG listener, registered in the suite files (testng.xml, groupsTestng.xml).
+ * On a failure it saves a screenshot and adds it to the failed test's own entry
+ * in the Extent report.
+ */
 public class TestListener implements ITestListener {
 
+    /**
+     * Runs right after a test failed, before BaseClass.afterMethod() records the error.
+     *
+     * @param result the failed test
+     */
     @Override
     public void onTestFailure(ITestResult result) {
         try {
@@ -18,6 +28,7 @@ public class TestListener implements ITestListener {
             BaseClass.extentTest.fail("Screenshot at the failure",
                     MediaEntityBuilder.createScreenCaptureFromPath(screenshotPath).build());
         } catch (IOException e) {
+            // A missing screenshot must not hide the real failure
             e.printStackTrace();
         }
     }
