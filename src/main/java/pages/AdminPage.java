@@ -14,7 +14,7 @@ public class AdminPage extends BrowserAction {
 
 
     private By userDropDown = By.xpath("//span[@class='oxd-userdropdown-tab']");
-    private By logoutOption = By.xpath("//a[role='menuitem' and @href='/web/index.php/auth/logout']");
+    private By logoutOption = By.xpath("//a[@role='menuitem' and @href='/web/index.php/auth/logout']");
 
     private By usernameField = By.xpath("//div[2]/input[@class='oxd-input oxd-input--active']");
 
