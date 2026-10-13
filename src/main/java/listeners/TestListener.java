@@ -10,7 +10,8 @@ import com.aventstack.extentreports.MediaEntityBuilder;
 import pages.BaseClass;
 
 /**
- * TestNG listener, registered in the suite files (testng.xml, groupsTestng.xml).
+ * TestNG listener, registered in every suite file (testng.xml, groupsTestng.xml,
+ * ReportDemoSuite.xml).
  * On a failure it saves a screenshot and adds it to the failed test's own entry
  * in the Extent report.
  */

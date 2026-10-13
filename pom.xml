@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Maven build of the Selenium + TestNG page object framework.
+  mvn test                                   runs testng.xml (the default suite)
+  mvn test -DsuiteXmlFile=groupsTestng.xml   runs the groups suite (or ReportDemoSuite.xml)
+  Browser, headless mode and waits come from src/main/resources/config.properties
+  and can be overridden the same way, e.g. -Dbrowser=firefox -Dheadless=true
+-->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
