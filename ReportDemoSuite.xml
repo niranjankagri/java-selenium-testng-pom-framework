@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<!--
+  Report demo: the 4 OrangeHRM tests plus one failure and one skip ON PURPOSE (ReportDemoTest),
+  to show every result type in the Extent report. Always ends with BUILD FAILURE; not for CI.
+  Run: mvn test -DsuiteXmlFile=ReportDemoSuite.xml
+  Expected: Tests run: 6, Failures: 1, Errors: 0, Skipped: 1
+-->
+<suite name="Orange HRM Report Demo">
+    <!-- Saves a screenshot of every failure into the Extent report -->
+    <listeners>
+        <listener class-name="listeners.TestListener"></listener>
+    </listeners>
+    <test name="Orange HRM Report Demo">
+        <classes>
+            <!-- passes (4 tests, own browser session) -->
+            <class name="TestClass"/>
+            <!-- fails once, skips once (own browser session) -->
+            <class name="ReportDemoTest"/>
+        </classes>
+    </test>
+</suite>
