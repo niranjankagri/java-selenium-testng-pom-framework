@@ -21,7 +21,6 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.Properties;
-import java.time.Duration;
 
 
 public class BaseClass {
@@ -42,11 +41,12 @@ public class BaseClass {
         ExtentSparkReporter sparkReporter = new ExtentSparkReporter("test-output/report.html");
         extentReports.attachReporter(sparkReporter);
 
-        driver = createDriver(properties.getProperty("browser", "chrome"),
-                Boolean.parseBoolean(properties.getProperty("headless", "false")));
+        boolean headless = Boolean.parseBoolean(properties.getProperty("headless", "false"));
+        driver = createDriver(properties.getProperty("browser", "chrome"), headless);
         driver.get(properties.getProperty("loginPageURL"));
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        if (!headless) {
+            driver.manage().window().maximize();
+        }
         Assert.assertEquals(driver.getCurrentUrl() , properties.getProperty("loginPageURL"), "Invalid URL");
 
     }
