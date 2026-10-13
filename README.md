@@ -138,7 +138,8 @@ mvn test -Dbrowser=edge -Dheadless=true         # Edge (also: firefox)
 mvn test -DsuiteXmlFile=groupsTestng.xml        # by group (SmokeTest + Regression)
 ```
 
-Expected: `Tests run: 4, Failures: 0, Errors: 0, Skipped: 0` in about 15-30 seconds. Checked on
+Expected: `Tests run: 4, Failures: 0, Errors: 0, Skipped: 0`, usually in 15-60 seconds depending on how fast
+the shared demo site answers. Checked on
 visible Chrome and headless Chrome, Edge and Firefox. The tests use the public demo site, so a slow
 or reset demo can occasionally fail a run.
 
@@ -186,7 +187,7 @@ Each step is its own commit, checked with a full run before it was pushed:
 | Dependencies | Selenium 4.16 → 4.51, TestNG 7.7 → 7.12, Extent 5.1.0 → 5.1.2; Surefire runs the suite file |
 | Listener | No hard-coded `E:/…` report path and no `Desktop.open` mid-run; the screenshot goes into the failed test's own entry; listener registered once |
 | Configuration | Browser, headless mode and waits in `config.properties`, with `-D` overrides |
-| Waits | Explicit waits in `BrowserAction` instead of 9 `Thread.sleep` calls and an implicit wait; the suite now takes about 15 s instead of about 45 s |
+| Waits | Explicit waits in `BrowserAction` instead of 9 `Thread.sleep` calls (14 s of fixed pauses per run) and an implicit wait |
 | Report | One Extent report per suite (it was recreated per class); clearer assertion messages |
 | Comments | Every class, page, test, config and suite file documented |
 | Report demo | One failure and one skip on purpose, in their own suite |
