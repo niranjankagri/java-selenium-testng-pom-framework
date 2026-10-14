@@ -15,8 +15,8 @@ import org.testng.annotations.Test;
  */
 public class TestClass extends BaseClass {
 
-    @Test(groups= {"SmokeTest"},priority = 1)
     /** Logs in with the demo account from config.properties and lands on the dashboard. */
+    @Test(groups= {"SmokeTest"},priority = 1)
     public void testSuccessfulLogin() {
         extentTest.info("Verify that user is able to login with valid credentials");
         SoftAssert softAssert = new SoftAssert();
@@ -35,8 +35,8 @@ public class TestClass extends BaseClass {
 
     }
 
-    @Test(groups= {"Regression"}, priority = 3)
     /** Searches System Users for "Admin" with status Enabled, then resets the filters. */
+    @Test(groups= {"Regression"}, priority = 3)
     public void testSearchUsername() {
         extentTest.info("Verify that Admin is able to Search User");
         SoftAssert softAssert = new SoftAssert();
@@ -60,8 +60,8 @@ public class TestClass extends BaseClass {
         softAssert.assertAll();
     }
 
-    @Test(groups= {"SmokeTest"}, priority = 2)
     /** Opens Admin from the dashboard side menu. */
+    @Test(groups= {"SmokeTest"}, priority = 2)
     public void testAdmin() {
         extentTest.info("Verify that user is able to navigate to Admin");
         SoftAssert softAssert = new SoftAssert();
@@ -73,8 +73,8 @@ public class TestClass extends BaseClass {
         softAssert.assertAll();
     }
 
-    @Test (groups= {"Regression"},priority = 4)
     /** Logs out through the user menu and is back on the login page. */
+    @Test (groups= {"Regression"},priority = 4)
     public void testSuccessfulLogout() {
         extentTest.info("Verify that user is able to logout");
         SoftAssert softAssert = new SoftAssert();
