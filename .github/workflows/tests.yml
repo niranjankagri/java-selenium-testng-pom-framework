@@ -1,0 +1,59 @@
+# Runs the suite headless in Chrome on every push and pull request to main, and once a day: the tests
+# use a public demo site, so the daily run also shows when the site changed. The JUnit XML is kept
+# as its own artifact for the CI results collection of automation-coverage-quality-intelligence.
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '15 5 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: OrangeHRM suite (Chrome headless, JDK 17)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+
+      # Chrome is preinstalled on the runner; Selenium Manager fetches the matching driver
+      - name: Run the tests
+        run: mvn -B test -Dheadless=true
+
+      - name: Keep the report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: test-report
+          path: |
+            test-output/report.html
+            Screenshots/
+          if-no-files-found: ignore
+          retention-days: 14
+
+      - name: Keep the JUnit results
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: junit-tests
+          path: target/surefire-reports/TEST-*.xml
+          if-no-files-found: warn
+          retention-days: 30

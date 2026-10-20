@@ -207,5 +207,7 @@ Each step is its own commit, checked with a full run before it was pushed:
   also fails the tests after it.
 - **One browser at a time:** the driver is static, so classes cannot run in parallel.
 - **Live demo site:** OrangeHRM's public demo is shared and reset regularly, which can make a run flaky.
+  CI (`.github/workflows/tests.yml`) runs the suite headless on every push and once a day, so a red
+  daily run can mean the site changed, not the code.
 - **Locators:** some XPaths rely on CSS classes and positions (e.g. the Status dropdown), which can break
   when OrangeHRM changes its markup.
