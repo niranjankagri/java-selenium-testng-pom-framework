@@ -21,6 +21,7 @@ then upgraded step by step in October 2026 without changing its design (see the 
 - [What changed since the 2024 version](#what-changed-since-the-2024-version)
 - [Adding a page or a test](#adding-a-page-or-a-test)
 - [Known limitations](#known-limitations)
+- [License](#license)
 
 ## Stack
 
@@ -207,7 +208,13 @@ Each step is its own commit, checked with a full run before it was pushed:
   also fails the tests after it.
 - **One browser at a time:** the driver is static, so classes cannot run in parallel.
 - **Live demo site:** OrangeHRM's public demo is shared and reset regularly, which can make a run flaky.
-  CI (`.github/workflows/tests.yml`) runs the suite headless on every push and once a day, so a red
-  daily run can mean the site changed, not the code.
+  CI (`.github/workflows/tests.yml`) runs the suite headless on every push, every pull request and once a
+  day, so a red daily run can mean the site changed, not the code. The JUnit XML is kept as the
+  **junit-tests** artifact, which [Automation Coverage & Quality Intelligence](https://github.com/niranjankagri/automation-coverage-quality-intelligence) collects.
+  `main` is protected by a ruleset: changes go through a pull request, and this job must pass first.
 - **Locators:** some XPaths rely on CSS classes and positions (e.g. the Status dropdown), which can break
   when OrangeHRM changes its markup.
+
+## License
+
+[MIT](LICENSE)
