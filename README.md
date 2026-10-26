@@ -212,6 +212,8 @@ Each step is its own commit, checked with a full run before it was pushed:
   day, so a red daily run can mean the site changed, not the code. The JUnit XML is kept as the
   **junit-tests** artifact, which [Automation Coverage & Quality Intelligence](https://github.com/niranjankagri/automation-coverage-quality-intelligence) collects.
   `main` is protected by a ruleset: changes go through a pull request, and this job must pass first.
+  Dependabot proposes dependency and GitHub Actions updates once a month (minor and patch
+  grouped, major versions as separate pull requests).
 - **Locators:** some XPaths rely on CSS classes and positions (e.g. the Status dropdown), which can break
   when OrangeHRM changes its markup.
 
