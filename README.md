@@ -62,6 +62,10 @@ src/test/java/
 docs/images/               report screenshots used below
 ```
 
+## Test cases
+
+The four tests start with their case ID (`tc101_testSuccessfulLogin`, description `[TC-101] ...`); the cases are written out for a manual run in [docs/manual-test-cases.md](docs/manual-test-cases.md).
+
 ## How a test run works
 
 ```
@@ -80,10 +84,10 @@ BaseClass (TestClass extends it)
    |
    v
 TestClass  (one browser session, priority order)
-   1 testSuccessfulLogin    LoginPage:  type user + password, click Login  -> dashboard URL
-   2 testAdmin              HomePage:   click Admin in the side menu       -> Admin URL
-   3 testSearchUsername     AdminPage:  user "Admin", Status = Enabled, Search, Reset
-   4 testSuccessfulLogout   AdminPage:  user menu -> Logout                -> login URL
+   1 tc101_testSuccessfulLogin    LoginPage:  type user + password, click Login  -> dashboard URL
+   2 tc102_testAdmin              HomePage:   click Admin in the side menu       -> Admin URL
+   3 tc103_testSearchUsername     AdminPage:  user "Admin", Status = Enabled, Search, Reset
+   4 tc104_testSuccessfulLogout   AdminPage:  user menu -> Logout                -> login URL
         every page action goes through BrowserAction:
         wait until visible / clickable (up to waitSeconds), then act; URL checks wait via waitForUrl
    |
