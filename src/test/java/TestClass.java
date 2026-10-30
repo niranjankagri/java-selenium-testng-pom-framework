@@ -16,8 +16,8 @@ import org.testng.annotations.Test;
 public class TestClass extends BaseClass {
 
     /** Logs in with the demo account from config.properties and lands on the dashboard. */
-    @Test(groups= {"SmokeTest"},priority = 1)
-    public void testSuccessfulLogin() {
+    @Test(groups= {"SmokeTest"},priority = 1, description = "[TC-101] Admin logs in and lands on the dashboard")
+    public void tc101_testSuccessfulLogin() {
         extentTest.info("Verify that user is able to login with valid credentials");
         SoftAssert softAssert = new SoftAssert();
         LoginPage loginPage = new LoginPage(getDriver());
@@ -36,8 +36,8 @@ public class TestClass extends BaseClass {
     }
 
     /** Searches System Users for "Admin" with status Enabled, then resets the filters. */
-    @Test(groups= {"Regression"}, priority = 3)
-    public void testSearchUsername() {
+    @Test(groups= {"Regression"}, priority = 3, description = "[TC-103] Admin searches System Users by username and status, then resets")
+    public void tc103_testSearchUsername() {
         extentTest.info("Verify that Admin is able to Search User");
         SoftAssert softAssert = new SoftAssert();
         AdminPage adminPage = new AdminPage(getDriver());
@@ -61,8 +61,8 @@ public class TestClass extends BaseClass {
     }
 
     /** Opens Admin from the dashboard side menu. */
-    @Test(groups= {"SmokeTest"}, priority = 2)
-    public void testAdmin() {
+    @Test(groups= {"SmokeTest"}, priority = 2, description = "[TC-102] Admin opens the Admin module from the side menu")
+    public void tc102_testAdmin() {
         extentTest.info("Verify that user is able to navigate to Admin");
         SoftAssert softAssert = new SoftAssert();
         HomePage homePage = new HomePage(getDriver());
@@ -74,8 +74,8 @@ public class TestClass extends BaseClass {
     }
 
     /** Logs out through the user menu and is back on the login page. */
-    @Test (groups= {"Regression"},priority = 4)
-    public void testSuccessfulLogout() {
+    @Test (groups= {"Regression"},priority = 4, description = "[TC-104] User logs out through the user menu")
+    public void tc104_testSuccessfulLogout() {
         extentTest.info("Verify that user is able to logout");
         SoftAssert softAssert = new SoftAssert();
         AdminPage adminPage = new AdminPage(getDriver());
